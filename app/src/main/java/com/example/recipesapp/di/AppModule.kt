@@ -2,6 +2,8 @@ package com.example.recipesapp.di
 
 import com.example.recipesapp.common.Constants
 import com.example.recipesapp.data.remote.RecipeApi
+import com.example.recipesapp.data.remote.repository.RecipeRepositoryImp
+import com.example.recipesapp.domain.RecipeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,9 +27,9 @@ object AppModule {
             .create(RecipeApi::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideCoinRepository(api: CoinPaprikaApi): CoinRepository {
-//        return CoinRepositoryImpl(api)
-//    }
+    @Provides
+    @Singleton
+    fun provideCoinRepository(api: RecipeApi): RecipeRepository {
+        return RecipeRepositoryImp(api)
+    }
 }
